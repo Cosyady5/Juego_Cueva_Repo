@@ -23,17 +23,18 @@ public class EnemyAIBasic : MonoBehaviour
     public float timeBetweenAttacks; // Tiempo de espera entre ataques.
     private bool alredyAttacked; // Determina si ya ha atacado.
 
-    // Variables para ataques a distancia:
-    //[SerializeField] GameObject projectile; // Referencia de la bala física.
-    //[SerializeField] Transform shootPoint; // Punto desde donde se genera la bala.
-    //[SerializeField] float shootSpeedZ; // velocidad frontal de la bala.
-    //[SerializeField] float shootSpeedY; // Velocidad vertical de la bala (solo si le afecta la gravedad).
+    [Header("Speed Settings")]
+    [SerializeField] float patrolSpeed = 2f;
+    [SerializeField] float chaseSpeed = 5f;
 
     [Header("States & Detection")]
     [SerializeField] float sightRange; // Distancia de detección del target de la IA.
     [SerializeField] float attackRange; // Distancia de ataque.
     [SerializeField] bool targetInSightRange; // Determina si el target esta a distancia de detección.
     [SerializeField] bool targetInAttacktRange; // Determina si el target esta a distancia de ataque.
+
+    enum EnemyState { Idle, Patrol, Chase, Attack }
+    EnemyState currentState;
 
     private void Awake()
     {
@@ -50,6 +51,22 @@ public class EnemyAIBasic : MonoBehaviour
 
     void HandleAnimations()
     {
+        float speed = agent.velocity.magnitude / Mathf.Max(agent.speed, 0.01f);
+
+        anim.SetBool("isWalking", agent.velocity.magnitude > 0.1f);
+        //anim.SetFloat("Velocity", speed);
+        switch (currentState)
+        {
+            case EnemyState.Patrol:
+                anim.SetFloat("Velocity", 0.4f);
+                break;
+            case EnemyState.Chase:
+                anim.SetFloat("Velocity", 1.0f);
+                break;
+            default:
+                anim.SetFloat("Velocity", 0f);
+                break;
+        }
 
     }
     void EnemyStateUpdater()
@@ -76,7 +93,9 @@ public class EnemyAIBasic : MonoBehaviour
 
     void Patroling()
     {
-        
+        agent.speed = patrolSpeed;
+        currentState = EnemyState.Patrol;
+
         if (!walkPointSet)
         {
             // Genera un punto de caminado nuevo:
@@ -113,12 +132,14 @@ public class EnemyAIBasic : MonoBehaviour
 
     void ChaseTarget()
     {
-        anim.SetTrigger("isRunning");
+        agent.speed = chaseSpeed;
+        currentState = EnemyState.Chase;
         agent.SetDestination(target.position);
     }
 
     void AttackTarget()
     {
+
         // Antes de atacar...:
         agent.SetDestination(transform.position); // Evita que se mueva.
         anim.SetTrigger("isAttacking");
