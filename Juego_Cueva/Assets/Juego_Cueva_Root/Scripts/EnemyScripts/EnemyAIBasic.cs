@@ -54,7 +54,6 @@ public class EnemyAIBasic : MonoBehaviour
         float speed = agent.velocity.magnitude / Mathf.Max(agent.speed, 0.01f);
 
         anim.SetBool("isWalking", agent.velocity.magnitude > 0.1f);
-        //anim.SetFloat("Velocity", speed);
         switch (currentState)
         {
             case EnemyState.Patrol:
@@ -134,14 +133,25 @@ public class EnemyAIBasic : MonoBehaviour
     {
         agent.speed = chaseSpeed;
         currentState = EnemyState.Chase;
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
+
+        float distance = Vector3.Distance(transform.position, target.position);
+
+        if (distance > agent.stoppingDistance)
+        {
+            agent.SetDestination(target.position);
+        }
+        else
+        {
+            agent.SetDestination(transform.position); // Para detenerse si ya está cerca
+        }
     }
 
     void AttackTarget()
     {
 
         // Antes de atacar...:
-        agent.SetDestination(transform.position); // Evita que se mueva.
+        //agent.SetDestination(transform.position); // Evita que se mueva.
         anim.SetTrigger("isAttacking");
         transform.LookAt(target);
 

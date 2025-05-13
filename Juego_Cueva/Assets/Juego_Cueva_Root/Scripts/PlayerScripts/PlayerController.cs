@@ -6,12 +6,22 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement & Look Stats")]
-    [SerializeField] GameObject camHolder;
     [SerializeField] private float rotationSpeed = 4f;
     public float speed;
     public float maxForce = 1; //Límite de aceleración máxima
     public float sensitivity = 0.1f; //Sensibilidad aplicada al input de observar
     private Transform cameraFollowTransform;
+
+    [Header("Interactable Stats")]
+    public float range; 
+    public float shootingCooldown;
+    public int damage;
+    [SerializeField] LayerMask interactableLayer;
+
+    [Header("State Bools")]
+    [SerializeField] bool isAttacking; //Verdadero cuando ESTAMOS DISPARANDO
+    [SerializeField] bool canAttack; //Verdadero cuando PODEMOS DISPARAR
+
 
     [Header("Jumping Stats")]
     public float jumpForce;
@@ -28,42 +38,52 @@ public class PlayerController : MonoBehaviour
     Vector2 lookInput;
     float lookRotation; //Valor de rotación que puede ser utilizado para la dirección de movimiento
 
+    //public BoxCollider[] weaponCol;
+    //public bool advance;
+    //public float impulseAttack = 10f;
+
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        //camHolder = GameObject.Find("CameraHolder");
         groundCheck = GameObject.Find("GroundCheck");
         cameraFollowTransform = Camera.main.transform;
+        canAttack = true;
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        //DeactiveColliderWeapon();
     }
 
     void Update()
     {
         HandleAnimations();
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius, groundLayer);
+        if (canAttack && isAttacking)
+        {
+            Attack();
+        }
     }
     private void FixedUpdate()
     {
         Movement();
+        /*if (!isAttacking)
+        {
+            transform.Rotate(0, moveInput.x * Time.deltaTime * rotationSpeed, 0);
+            transform.Translate(0, 0, moveInput.y * Time.deltaTime * rotationSpeed);
+        }
+        if (advance)
+        {
+            playerRb.velocity = transform.forward * impulseAttack;
+        }*/
     }
 
-    private void LateUpdate()
-    {
-        //CameraLook();
-    }
 
     void Movement()
     {
-        Vector3 currentVelocity = playerRb.velocity; //Velocidad actual del player
-        /*Vector3 targetVelocity = new Vector3(moveInput.x, 0, moveInput.y); //Velocidad hacia la que queremos que se mueva el player
-        targetVelocity *= speed;
-        //Alinear la dirección con la orientación correcta (de local a global)
-        targetVelocity = transform.TransformDirection(targetVelocity);*/
+        Vector3 currentVelocity = playerRb.velocity; 
         Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y);
         Vector3 camForward = cameraFollowTransform.forward;
         Vector3 camRight = cameraFollowTransform.right;
@@ -94,15 +114,25 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    /*void CameraLook()
+    void Attack()
     {
-        //Girar (Gira el personaje en horizontal)
-        transform.Rotate(Vector3.up * lookInput.x * sensitivity);
-        //Mirar (Gira la cámara en vertical)
-        lookRotation += (-lookInput.y * sensitivity);
-        lookRotation = Mathf.Clamp(lookRotation, -90, 90); //Restringe el valor de lookRotation entre dos valores mínimo/máximo
-        camHolder.transform.eulerAngles = new Vector3(lookRotation, camHolder.transform.eulerAngles.y, camHolder.transform.eulerAngles.z);
-    }*/
+        canAttack = false;
+        anim.SetTrigger("isAttacking");
+        Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * 1f, 1.2f, interactableLayer);
+        foreach (var h in hits)
+        {
+            if (h.CompareTag("Enemy"))
+            {
+                h.GetComponent<EnemyHealth>().TakeDamage(damage);
+            }
+        }
+        Invoke(nameof(ResetAttack), shootingCooldown);
+    }
+
+    void ResetAttack()
+    {
+        canAttack = true;
+    }
 
     void Jump()
     {
@@ -111,6 +141,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
+
     void HandleAnimations()
     {
         anim.SetBool("isJumping", !isGrounded);
@@ -118,6 +149,36 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isRunning", Mathf.Abs(moveInput.x) > 0.1f || Mathf.Abs(moveInput.y) > 0.1f);
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + transform.forward * 1f, 1.2f);
+    }
+
+    /*void ActiveColliderWeapon()
+    {
+        for (int i = 0; i < weaponCol.Length; i++)
+        {
+            if (playerlogique.weapon)
+            {
+                if (weaponCol[i] != null)
+                {
+                    weaponCol[i].enabled = true;
+                }
+            }
+        }
+    }
+
+    void DeactiveColliderWeapon()
+    {
+        for (int i = 0; i < weaponCol.Length; i++)
+        {
+            if (weaponCol[i] != null)
+            {
+                weaponCol[i].enabled = false;
+            }
+        }
+    }*/
     #region Input Methods
 
     public void OnMove(InputAction.CallbackContext context)
@@ -134,6 +195,18 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             Jump();
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isAttacking = true;
+        }
+        if (context.canceled)
+        {
+            isAttacking = false;
         }
     }
     #endregion
