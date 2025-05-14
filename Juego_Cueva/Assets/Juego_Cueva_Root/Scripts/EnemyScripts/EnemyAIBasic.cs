@@ -149,19 +149,24 @@ public class EnemyAIBasic : MonoBehaviour
 
     void AttackTarget()
     {
-
+        /*agent.ResetPath();
+        agent.velocity = Vector3.zero;
         // Antes de atacar...:
         //agent.SetDestination(transform.position); // Evita que se mueva.
         anim.SetTrigger("isAttacking");
         transform.LookAt(target);
-
+        */
         if (!alredyAttacked)
         {
-            //Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb.AddForce(transform.forward * shootSpeedZ, ForceMode.Impulse);
-            //rb.AddForce(transform.up * shootSpeedY, ForceMode.Impulse); // Solo si le afecta la gravedad.
+            currentState = EnemyState.Attack;
 
-            // Añade un intervalo entre ataques.
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            //agent.isStopped = true;
+
+            anim.SetTrigger("isAttacking");
+            transform.LookAt(target);
+
             alredyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -170,6 +175,7 @@ public class EnemyAIBasic : MonoBehaviour
     void ResetAttack()
     {
         alredyAttacked = false;
+        //if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh) { agent.isStopped = false; }
     }
 
     // Función para que los Gizmos de detección (perseguir/ataque) se dibujen en la escena al seleccionar el objeto.
