@@ -38,9 +38,9 @@ public class PlayerController : MonoBehaviour
     Vector2 lookInput;
     float lookRotation; //Valor de rotación que puede ser utilizado para la dirección de movimiento
 
-    //public BoxCollider[] weaponCol;
-    //public bool advance;
-    //public float impulseAttack = 10f;
+    [SerializeField] Collider attackCollider;
+    [SerializeField] int maxJumps = 1;
+    int jumpCount;
 
     private void Awake()
     {
@@ -54,30 +54,20 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //DeactiveColliderWeapon();
+        attackCollider.enabled = false;
     }
 
     void Update()
     {
         HandleAnimations();
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius, groundLayer);
-        if (canAttack && isAttacking)
-        {
-            Attack();
-        }
+        if (isGrounded && jumpCount > 0) jumpCount = 0; 
+
+        if (canAttack && isAttacking) Attack();
     }
     private void FixedUpdate()
     {
         Movement();
-        /*if (!isAttacking)
-        {
-            transform.Rotate(0, moveInput.x * Time.deltaTime * rotationSpeed, 0);
-            transform.Translate(0, 0, moveInput.y * Time.deltaTime * rotationSpeed);
-        }
-        if (advance)
-        {
-            playerRb.velocity = transform.forward * impulseAttack;
-        }*/
     }
 
 
@@ -118,15 +108,19 @@ public class PlayerController : MonoBehaviour
     {
         canAttack = false;
         anim.SetTrigger("isAttacking");
-        Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * 1f, 1.2f, interactableLayer);
-        foreach (var h in hits)
-        {
-            if (h.CompareTag("Enemy"))
-            {
-                h.GetComponent<EnemyHealth>().TakeDamage(damage);
-            }
-        }
         Invoke(nameof(ResetAttack), shootingCooldown);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!attackCollider.enabled) return;
+
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyHealth>().TakeDamage(damage);
+
+            attackCollider.enabled = false;
+        }
     }
 
     void ResetAttack()
@@ -136,9 +130,10 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (isGrounded)
+        if (jumpCount < maxJumps)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount++;
         }
     }
 
@@ -154,31 +149,16 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + transform.forward * 1f, 1.2f);
     }
-
-    /*void ActiveColliderWeapon()
+    public void EnableAttackCollider()
     {
-        for (int i = 0; i < weaponCol.Length; i++)
-        {
-            if (playerlogique.weapon)
-            {
-                if (weaponCol[i] != null)
-                {
-                    weaponCol[i].enabled = true;
-                }
-            }
-        }
+        attackCollider.enabled = true;
     }
 
-    void DeactiveColliderWeapon()
+    public void DisableAttackCollider()
     {
-        for (int i = 0; i < weaponCol.Length; i++)
-        {
-            if (weaponCol[i] != null)
-            {
-                weaponCol[i].enabled = false;
-            }
-        }
-    }*/
+        attackCollider.enabled = false;
+    }
+
     #region Input Methods
 
     public void OnMove(InputAction.CallbackContext context)
