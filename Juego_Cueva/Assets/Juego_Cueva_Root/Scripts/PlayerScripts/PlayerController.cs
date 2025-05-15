@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Health System Configuration")]
+   /* [SerializeField] int maxHealth;
+    [SerializeField] int currentHealth;
+    private bool isDead = false;*/
+
     [Header("Movement & Look Stats")]
     [SerializeField] private float rotationSpeed = 4f;
     public float speed;
@@ -17,11 +22,11 @@ public class PlayerController : MonoBehaviour
     public float shootingCooldown;
     public int damage;
     [SerializeField] LayerMask interactableLayer;
+    [SerializeField] Collider attackCollider;
 
     [Header("State Bools")]
     [SerializeField] bool isAttacking; //Verdadero cuando ESTAMOS DISPARANDO
     [SerializeField] bool canAttack; //Verdadero cuando PODEMOS DISPARAR
-
 
     [Header("Jumping Stats")]
     public float jumpForce;
@@ -29,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isGrounded;
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] int maxJumps = 1;
+    int jumpCount;
 
     //Referencias privadas (GetComponent)
     private Rigidbody playerRb;
@@ -37,10 +44,6 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     Vector2 lookInput;
     float lookRotation; //Valor de rotación que puede ser utilizado para la dirección de movimiento
-
-    [SerializeField] Collider attackCollider;
-    [SerializeField] int maxJumps = 1;
-    int jumpCount;
 
     private void Awake()
     {
@@ -62,7 +65,6 @@ public class PlayerController : MonoBehaviour
         HandleAnimations();
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius, groundLayer);
         if (isGrounded && jumpCount > 0) jumpCount = 0; 
-
         if (canAttack && isAttacking) Attack();
     }
     private void FixedUpdate()
@@ -100,8 +102,6 @@ public class PlayerController : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.fixedDeltaTime * rotationSpeed);
         }
-
-        
     }
 
     void Attack()
@@ -118,7 +118,6 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
-
             attackCollider.enabled = false;
         }
     }

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Health System Configuration")]
+    [SerializeField] private HealthBar healthBar;
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
     public SkinnedMeshRenderer skinnedMesh;
@@ -20,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     //[SerializeField] Material baseMat;
     //[SerializeField] Material damagedMat;
     [SerializeField] GameObject deathEffect;
-
+    [SerializeField] Collider attackCollider;
     // Autorrefernecias privadas
     //MeshRenderer enemyRend;
 
@@ -38,15 +40,26 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
         currentHealth -= damage;
+        healthBar.UpdateHealthBar(maxHealth, currentHealth);
         //enemyRend.material = damagedMat;
         //Invoke(nameof(ResetDamageMeterial), 0.2f);
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             StartCoroutine(Die());
+            healthBar.gameObject.SetActive(false);
             deathEffect.SetActive(true);
             if (skinnedMaterials.Length > 0) StartCoroutine(DissolveCo());
         }
+    }
+    public void EnableAttackCollider()
+    {
+        attackCollider.enabled = true;
+    }
+
+    public void DisableAttackCollider()
+    {
+        attackCollider.enabled = false;
     }
 
     IEnumerator Die()
