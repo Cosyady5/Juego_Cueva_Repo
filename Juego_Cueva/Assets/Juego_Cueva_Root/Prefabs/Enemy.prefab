@@ -814,7 +814,6 @@ MonoBehaviour:
   dissolveRate: 0.0125
   refreshRate: 0.025
   deathEffect: {fileID: 7705089223485126203}
-  attackCollider: {fileID: 932962071482646469}
 --- !u!114 &7623714086044120276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,6 +838,8 @@ MonoBehaviour:
   walkPointRange: 4
   walkPointSet: 0
   timeBetweenAttacks: 2
+  attackCollider: {fileID: 932962071482646469}
+  damage: 3
   patrolSpeed: 2
   chaseSpeed: 5
   sightRange: 10

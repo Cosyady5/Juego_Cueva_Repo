@@ -22,7 +22,6 @@ public class EnemyHealth : MonoBehaviour
     //[SerializeField] Material baseMat;
     //[SerializeField] Material damagedMat;
     [SerializeField] GameObject deathEffect;
-    [SerializeField] Collider attackCollider;
     // Autorrefernecias privadas
     //MeshRenderer enemyRend;
 
@@ -51,15 +50,6 @@ public class EnemyHealth : MonoBehaviour
             deathEffect.SetActive(true);
             if (skinnedMaterials.Length > 0) StartCoroutine(DissolveCo());
         }
-    }
-    public void EnableAttackCollider()
-    {
-        attackCollider.enabled = true;
-    }
-
-    public void DisableAttackCollider()
-    {
-        attackCollider.enabled = false;
     }
 
     IEnumerator Die()

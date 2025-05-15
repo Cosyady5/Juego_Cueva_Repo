@@ -1959,6 +1959,7 @@ GameObject:
   - component: {fileID: 6524442445803540606}
   - component: {fileID: 765972943867043846}
   - component: {fileID: 830348163653228143}
+  - component: {fileID: 311791523075379064}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2214,6 +2215,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackCollider: {fileID: 774324446251959964}
   isAttacking: 0
   canAttack: 1
   jumpForce: 6
@@ -2223,8 +2225,21 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackCollider: {fileID: 774324446251959964}
   maxJumps: 1
+--- !u!114 &311791523075379064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808576432489934931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3daea6a45d3d70f4e98bce0e385c642b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
 --- !u!1 &5961806713730916506
 GameObject:
   m_ObjectHideFlags: 3

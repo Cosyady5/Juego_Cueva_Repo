@@ -5,11 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Health System Configuration")]
-   /* [SerializeField] int maxHealth;
-    [SerializeField] int currentHealth;
-    private bool isDead = false;*/
-
     [Header("Movement & Look Stats")]
     [SerializeField] private float rotationSpeed = 4f;
     public float speed;
