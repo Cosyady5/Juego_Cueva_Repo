@@ -10,15 +10,18 @@ public class PlayerHealth : MonoBehaviour
     private Animator anim;
     private bool isDead = false;
 
+    [Header("Respawn Configuration")]
+    [SerializeField] Transform respawnPoint;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int enemyDamage)
     {
         if (isDead) return;
-        currentHealth -= damage;
+        currentHealth -= enemyDamage;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -30,7 +33,14 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
         anim.SetTrigger("Death");
         yield return new WaitForSecondsRealtime(2f);
+        Respawn();
+    }
 
-        Destroy(gameObject);
+    void Respawn()
+    {
+        transform.position = respawnPoint.position;
+        currentHealth = maxHealth;
+        isDead = false;
+        anim.Play("Player_Idle");
     }
 }

@@ -668,8 +668,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.4236269, y: 1, z: 2.9650455}
+  m_Center: {x: -0.21181172, y: -0.00000007114736, z: 0.11660139}
 --- !u!1 &3571481089922583716
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,8 +838,8 @@ MonoBehaviour:
   walkPointRange: 4
   walkPointSet: 0
   timeBetweenAttacks: 2
-  attackCollider: {fileID: 932962071482646469}
-  damage: 3
+  enemyCollider: {fileID: 932962071482646469}
+  enemyDamage: 0
   patrolSpeed: 2
   chaseSpeed: 5
   sightRange: 10

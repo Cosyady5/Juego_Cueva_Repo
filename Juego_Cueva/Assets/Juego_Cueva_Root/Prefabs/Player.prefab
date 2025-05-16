@@ -2027,7 +2027,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.22276524
+  m_Radius: 0.33923656
   m_Height: 1.8655579
   m_Direction: 1
   m_Center: {x: 0, y: 0.93277895, z: 0}
@@ -2240,6 +2240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
+  respawnPoint: {fileID: 0}
 --- !u!1 &5961806713730916506
 GameObject:
   m_ObjectHideFlags: 3

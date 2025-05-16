@@ -22,8 +22,8 @@ public class EnemyAIBasic : MonoBehaviour
     [Header("Attack Configuration")]
     public float timeBetweenAttacks; // Tiempo de espera entre ataques.
     private bool alredyAttacked; // Determina si ya ha atacado.
-    [SerializeField] Collider attackCollider;
-    public int damage;
+    [SerializeField] Collider enemyCollider;
+    public int enemyDamage;
 
     [Header("Speed Settings")]
     [SerializeField] float patrolSpeed = 2f;
@@ -43,9 +43,12 @@ public class EnemyAIBasic : MonoBehaviour
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.Find("Player").transform;
-        attackCollider.enabled = false;
     }
 
+    private void Start()
+    {
+        enemyCollider.enabled = false;
+    }
     private void Update()
     {
         HandleAnimations();
@@ -175,31 +178,31 @@ public class EnemyAIBasic : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!enemyCollider.enabled) return;
+
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerHealth>().TakeDamage(enemyDamage);
+            enemyCollider.enabled = false;
+        }
+    }
     void ResetAttack()
     {
         alredyAttacked = false;
         //if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh) { agent.isStopped = false; }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!attackCollider.enabled) return;
-
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerHealth>().TakeDamage(damage);
-            attackCollider.enabled = false;
-        }
-    }
 
     public void EnableAttackCollider()
     {
-        attackCollider.enabled = true;
+        enemyCollider.enabled = true;
     }
 
     public void DisableAttackCollider()
     {
-        attackCollider.enabled = false;
+        enemyCollider.enabled = false;
     }
     // Función para que los Gizmos de detección (perseguir/ataque) se dibujen en la escena al seleccionar el objeto.
     private void OnDrawGizmosSelected()
