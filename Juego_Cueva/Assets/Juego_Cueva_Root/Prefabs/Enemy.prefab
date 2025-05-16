@@ -813,6 +813,8 @@ MonoBehaviour:
   skinnedMesh: {fileID: 3997411000148660182}
   dissolveRate: 0.0125
   refreshRate: 0.025
+  baseMat: {fileID: 2100000, guid: d31ccfafacdc84d409eefcae1ed5059f, type: 2}
+  damagedMat: {fileID: 2100000, guid: c26bcb086db14744e90b9b3cb52c5d4a, type: 2}
   deathEffect: {fileID: 7705089223485126203}
 --- !u!114 &7623714086044120276
 MonoBehaviour:

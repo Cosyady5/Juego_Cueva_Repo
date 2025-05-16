@@ -16,12 +16,13 @@ public class PlayerController : MonoBehaviour
     public float range; 
     public float shootingCooldown;
     public int damage;
-    [SerializeField] LayerMask interactableLayer;
     [SerializeField] Collider attackCollider;
+
 
     [Header("State Bools")]
     [SerializeField] bool isAttacking; //Verdadero cuando ESTAMOS DISPARANDO
     [SerializeField] bool canAttack; //Verdadero cuando PODEMOS DISPARAR
+    //[SerializeField] bool weaponOn = false;
 
     [Header("Jumping Stats")]
     public float jumpForce;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         groundCheck = GameObject.Find("GroundCheck");
         cameraFollowTransform = Camera.main.transform;
-        canAttack = true;
+        canAttack = false;
     }
     void Start()
     {
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
     }
-
 
     void Movement()
     {
@@ -117,6 +117,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetHasWeapon(bool value)
+    {
+        canAttack = value;
+    }
     void ResetAttack()
     {
         canAttack = true;

@@ -10,25 +10,19 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
+    private Animator anim;
+    private bool isDead = false;
+
+
+    [Header("Feedback Configuration")]
     public SkinnedMeshRenderer skinnedMesh;
     public float dissolveRate = 0.0125f;
     public float refreshRate = 0.025f;
-    private Animator anim;
-    private bool isDead = false;
-    //public GameObject particles;
-
     private Material[] skinnedMaterials;
-    //[Header("Feedback Configuration")]
-    //[SerializeField] Material baseMat;
-    //[SerializeField] Material damagedMat;
     [SerializeField] GameObject deathEffect;
-    // Autorrefernecias privadas
-    //MeshRenderer enemyRend;
 
     private void Awake()
     {
-        //enemyRend = GetComponent<MeshRenderer>();
-        //baseMat = enemyRend.material;
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
         if (skinnedMesh != null)
@@ -40,8 +34,7 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
         currentHealth -= damage;
         healthBar.UpdateHealthBar(maxHealth, currentHealth);
-        //enemyRend.material = damagedMat;
-        //Invoke(nameof(ResetDamageMeterial), 0.2f);
+        StartCoroutine(FlashRed());
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -75,8 +68,17 @@ public class EnemyHealth : MonoBehaviour
             yield return new WaitForSeconds(refreshRate);
         }
     }
-    /*private void ResetDamageMeterial()
+
+    IEnumerator FlashRed()
     {
-        enemyRend.material = baseMat;
-    }*/
+        foreach (var mat in skinnedMesh.materials)
+        {
+            mat.SetColor("_BaseColor", Color.red);
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (var mat in skinnedMesh.materials)
+        {
+            mat.SetColor("_BaseColor", Color.white);
+        }
+    }
 }
