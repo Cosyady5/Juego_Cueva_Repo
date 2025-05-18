@@ -18,6 +18,10 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
+    private void Update()
+    {
+        if (transform.position.y <= -10) Respawn();
+    }
     public void TakeDamage(int enemyDamage)
     {
         if (isDead) return;

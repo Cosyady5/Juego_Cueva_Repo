@@ -113,10 +113,7 @@ public class EnemyAIBasic : MonoBehaviour
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        if (distanceToWalkPoint.magnitude < 1)
-        {
-            walkPointSet = false;
-        }
+        if (distanceToWalkPoint.magnitude < 1) walkPointSet = false;
     }
 
     void SearchWalkPoint()
@@ -129,17 +126,15 @@ public class EnemyAIBasic : MonoBehaviour
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         // Comprobación de si el nuevo punto de caminado es válido:
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer))
-        {
-            walkPointSet = true;
-        }
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) walkPointSet = true;
     }
 
     void ChaseTarget()
     {
+
+        //agent.SetDestination(target.position);
         agent.speed = chaseSpeed;
         currentState = EnemyState.Chase;
-        //agent.SetDestination(target.position);
 
         float distance = Vector3.Distance(transform.position, target.position);
 
@@ -155,13 +150,6 @@ public class EnemyAIBasic : MonoBehaviour
 
     void AttackTarget()
     {
-        /*agent.ResetPath();
-        agent.velocity = Vector3.zero;
-        // Antes de atacar...:
-        //agent.SetDestination(transform.position); // Evita que se mueva.
-        anim.SetTrigger("isAttacking");
-        transform.LookAt(target);
-        */
         if (!alredyAttacked)
         {
             currentState = EnemyState.Attack;

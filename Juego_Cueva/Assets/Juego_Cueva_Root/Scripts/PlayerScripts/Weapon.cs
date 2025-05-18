@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Configuración de recogida")]
+    [Header("Weapon Settings")]
     [SerializeField] private GameObject weaponOnPlayer;
     [SerializeField] private GameObject interactionUI;
     private bool isPlayerInRange = false;
