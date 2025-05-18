@@ -9,11 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 4f;
     public float speed;
     public float maxForce = 1; //Límite de aceleración máxima
-    public float sensitivity = 0.1f; //Sensibilidad aplicada al input de observar
     private Transform cameraFollowTransform;
 
     [Header("Interactable Stats")]
-    public float range; 
     public float shootingCooldown;
     public int damage;
     [SerializeField] Collider attackCollider;
@@ -39,7 +37,6 @@ public class PlayerController : MonoBehaviour
     //Referencias privadas del input
     Vector2 moveInput;
     Vector2 lookInput;
-    float lookRotation; //Valor de rotación que puede ser utilizado para la dirección de movimiento
 
     private void Awake()
     {
