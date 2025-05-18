@@ -5,10 +5,12 @@ using UnityEngine;
 public class MovingPlataform : MonoBehaviour
 {
     public float speed; //Velocidad de la plataforma
+    public float time;
     [SerializeField] int startingPoint; //Número para determinar el index del punto de inicio del movimiento
     [SerializeField] Transform[] points; //Array de puntos de posición a los que la plataforma "perseguirá"
     int i; //Index que determina qué número de plataforma se persigue actualmente
-
+    private bool move = false;
+    private float timer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,12 @@ public class MovingPlataform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlatformMove();
+        if (move) PlatformMove();
+        else
+        {
+            timer -= Time.fixedDeltaTime;
+            if (timer < 0f) move = true;
+        }
     }
 
     void PlatformMove()
@@ -26,6 +33,8 @@ public class MovingPlataform : MonoBehaviour
         //Detector de si la plataforma ha llegado al destino, cambiando el destino
         if (Vector3.Distance(transform.position, points[i].position) < 0.02f)
         {
+            move = false;
+            timer = time;
             i++; //Aumenta en uno el index, cambia de objetivo
             if (i == points.Length) i = 0;
         }
@@ -39,7 +48,7 @@ public class MovingPlataform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.parent = this.transform;
+            other.transform.SetParent(this.transform, true);
         }
     }
 
@@ -47,7 +56,7 @@ public class MovingPlataform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.parent = null;
+            other.transform.SetParent(null);
         }
     }
 }
