@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Juego_Cueva_Root/Scenes/YaiTest.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: "Assets/Juego_Cueva_Root/Scenes/MainMen\xFA.unity"
+    guid: 861c915f89a669b4fa64d748b2200776
+  - enabled: 1
+    path: Assets/Juego_Cueva_Root/Scenes/PlayScene.unity
+    guid: 900650c543b25b74bb60a59af3ad411d
   m_configObjects: {}
