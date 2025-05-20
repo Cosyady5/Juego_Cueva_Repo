@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (transform.position.y <= -10) Respawn();
     }
+
+
     public void TakeDamage(int enemyDamage)
     {
         if (isDead) return;
@@ -52,7 +55,16 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        respawnPoint = transform.position;
-        Destroy(other.gameObject);
+        if (other.CompareTag("Obstacle"))
+        {
+            Respawn();
+        }
+
+        else
+        {
+            respawnPoint = transform.position;
+            Destroy(other.gameObject);
+        }
+        
     }
 }
