@@ -1960,6 +1960,7 @@ GameObject:
   - component: {fileID: 765972943867043846}
   - component: {fileID: 830348163653228143}
   - component: {fileID: 311791523075379064}
+  - component: {fileID: 1148875632882175735}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2188,6 +2189,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 29e12424-4a8a-4d59-a483-062a2c45e3b0
     m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f74e0a2a-96f2-4f56-9889-bf5c92528fdc
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2208,8 +2213,6 @@ MonoBehaviour:
   rotationSpeed: 4
   speed: 5
   maxForce: 1
-  sensitivity: 0.1
-  range: 20
   shootingCooldown: 1
   damage: 10
   attackCollider: {fileID: 774324446251959964}
@@ -2238,6 +2241,22 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   respawnPoint: {fileID: 0}
+--- !u!114 &1148875632882175735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808576432489934931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c52eab4dbd2eca449e13031d7a57729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5808576432489934931}
+  checkPoints: []
+  vectorPoint: {x: 0, y: 0, z: 0}
+  dead: 0
 --- !u!1 &5961806713730916506
 GameObject:
   m_ObjectHideFlags: 3

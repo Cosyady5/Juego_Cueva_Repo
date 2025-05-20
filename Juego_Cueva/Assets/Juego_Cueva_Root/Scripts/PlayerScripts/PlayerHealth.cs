@@ -9,9 +9,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int currentHealth;
     private Animator anim;
     private bool isDead = false;
+    
 
     [Header("Respawn Configuration")]
-    [SerializeField] Transform respawnPoint;
+    [SerializeField] Vector3 respawnPoint;
+    [SerializeField] List<GameObject> checkPoints;
 
     private void Awake()
     {
@@ -42,9 +44,15 @@ public class PlayerHealth : MonoBehaviour
 
     void Respawn()
     {
-        transform.position = respawnPoint.position;
+        transform.position = respawnPoint;
         currentHealth = maxHealth;
         isDead = false;
         anim.Play("Player_Idle");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        respawnPoint = transform.position;
+        Destroy(other.gameObject);
     }
 }
