@@ -60,11 +60,10 @@ public class PlayerHealth : MonoBehaviour
             Respawn();
         }
 
-        else
+        if (other.CompareTag("Checkpoint"))
         {
             respawnPoint = transform.position;
             Destroy(other.gameObject);
         }
-        
     }
 }
