@@ -14,15 +14,12 @@ public class LeverInteract : MonoBehaviour
     private InputAction interactAction;
     public GameObject Activate;
 
-    public int points;
-    public int winPoints;
+
 
 
     private void Start()
     {
         transform.localEulerAngles = new Vector3(-120f, 0f, 0f);
-        points = 0;
-        winPoints = 2;
     }
     private void Awake()
     {
@@ -33,6 +30,7 @@ public class LeverInteract : MonoBehaviour
     private void Update()
     {
         interactionUILever.transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+
     }
 
     private void OnEnable()
@@ -69,18 +67,13 @@ public class LeverInteract : MonoBehaviour
     {
         if (isPlayerInRange)
         {
-            points += 1;
+            Waterfall.points += 1;
             isPlayerInRange = false;
             interactionUILever.SetActive(false);
             // Destroy(interactionUILever);
             transform.localEulerAngles = new Vector3(-50f, 0f, 0f);
             //Quaternion targetRot = Quaternion.Euler(-50f, transform.eulerAngles.y, transform.eulerAngles.z);
             //transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * 2f);
-
-            if (points >= winPoints)
-            {
-                Destroy(Activate);
-            }
          
            
 
