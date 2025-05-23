@@ -26,15 +26,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColor:
-        m_Texture: {fileID: 18700000, guid: cc2e1d3cebbaf9c46a5d8194d7157d80, type: 3}
+        m_Texture: {fileID: 18700000, guid: 03a386bcbc3292c45818c5fb304a0593, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicSmoothness:
-        m_Texture: {fileID: 18700000, guid: 7f94d3006537e7d40b6dafab37f3bb7e, type: 3}
+        m_Texture: {fileID: 18700000, guid: 583d6d1323e87d34fb21f829e266a114, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 18700000, guid: a680dca46d09b89499cb1c4538de72ad, type: 3}
+        m_Texture: {fileID: 18700000, guid: f9550080a91571a4589b2235e01d864f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
