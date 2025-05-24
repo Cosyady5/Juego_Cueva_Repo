@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int currentHealth;
     private Animator anim;
     private bool isDead = false;
-    
+    public HeartUI uiManager;
 
     [Header("Respawn Configuration")]
     [SerializeField] Vector3 respawnPoint;
@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
+        uiManager.UpdateHearts(currentHealth);
     }
     private void Update()
     {
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
         currentHealth -= enemyDamage;
+        uiManager.UpdateHearts(currentHealth);
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -51,13 +53,14 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         isDead = false;
         anim.Play("Player_Idle");
+        uiManager.UpdateHearts(currentHealth);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacle"))
         {
-            Respawn();
+            StartCoroutine(Die());
         }
 
         if (other.CompareTag("Checkpoint"))
@@ -65,5 +68,9 @@ public class PlayerHealth : MonoBehaviour
             respawnPoint = transform.position;
             Destroy(other.gameObject);
         }
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

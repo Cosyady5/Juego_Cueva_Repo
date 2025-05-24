@@ -12,9 +12,10 @@ public class FracturedObjects : MonoBehaviour
     public float explosionMaxForce = 100;
     public float explosionForceRadius = 10;
     public float fragScaleFactor = 1;
-
+    public bool multiple = false;
     private GameObject fractObj;
-
+    public Collider nextTrigger;
+    public float delayToActivateNext = 1f;
     public void Explode()
     {
         if (triggeractual != null)
@@ -38,16 +39,19 @@ public class FracturedObjects : MonoBehaviour
                 }
 
                 Destroy(fractObj, 5);
-
-                /*if (vfx != null)
-                {
-                    GameObject vfx = Instantiate(vfx) as GameObject; ;
-                    Destroy(vfx, 7);
-                }*/
             }    
+        }
+        if (nextTrigger != null && multiple)
+        {
+            StartCoroutine(EnableTriggerAfterDelay(nextTrigger, delayToActivateNext));
         }
     }
 
+    IEnumerator EnableTriggerAfterDelay(Collider trigger, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        trigger.enabled = true;
+    }
 
     IEnumerator Shrink (Transform t, float delay)
     {

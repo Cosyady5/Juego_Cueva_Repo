@@ -13,7 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 3f;
     public Collider triggerZone; // Zona de entrada del jugador
     public int maxEnemiesAlive = 5;
-
+    public bool hasboss = false;
+    public GameObject boss;
+    public GameObject hpBoss;
     //[Header("Crystal Settings")]
     //public int totalCrystals = 4;
     //private int destroyedCrystals = 0;
@@ -22,10 +24,6 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private int currentSpawnIndex = 0;
 
-    private void Start()
-    {
-        if (triggerZone != null) triggerZone.isTrigger = true;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -64,14 +62,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Llamar esto desde el cristal cuando se destruya
-    /*public void NotifyCrystalDestroyed()
-    {
-        destroyedCrystals++;
-
-        if (destroyedCrystals >= totalCrystals) StopSpawning();
-    }*/
-
     public void StopSpawning()
     {
         canSpawn = false;
@@ -92,9 +82,17 @@ public class EnemySpawner : MonoBehaviour
                     }
                 }
             }
+            triggerZone.enabled = false;
         }
 
         spawnedEnemies.Clear();
+
+        if (hasboss)
+        {
+            boss.SetActive(true);
+            hpBoss.SetActive(true);
+        }
+
     }
     public void NotifyEnemyDied(GameObject enemy)
     {

@@ -767,7 +767,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4815147699838654384}
@@ -840,7 +840,7 @@ MonoBehaviour:
   walkPointSet: 0
   timeBetweenAttacks: 2
   enemyCollider: {fileID: 932962071482646469}
-  enemyDamage: 0
+  enemyDamage: 1
   patrolSpeed: 2
   chaseSpeed: 5
   sightRange: 22
@@ -1895,6 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbarSprite: {fileID: 2208374638229423627}
+  isboss: 0
 --- !u!1 &7386983160583888076
 GameObject:
   m_ObjectHideFlags: 0

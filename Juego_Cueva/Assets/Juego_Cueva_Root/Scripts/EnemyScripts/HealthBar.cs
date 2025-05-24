@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour
 {
 
     [SerializeField] private Image healthbarSprite;
+    public bool isboss = false;
     
     public void UpdateHealthBar(float maxHealth, float currentHeatlh)
     {
@@ -15,6 +16,6 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+        if(!isboss) transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
     }
 }

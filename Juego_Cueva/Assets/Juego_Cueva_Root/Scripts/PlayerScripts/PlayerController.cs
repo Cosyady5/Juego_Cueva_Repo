@@ -118,20 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Crystal"))
         {
-            FractureNotifier notifier = other.GetComponent<FractureNotifier>();
-            if (notifier != null)
-            {
-                notifier.ExplodeWithNotify(); // Marca como destruido y luego hace la fractura
-            }
-            else
-            {
-                // Por compatibilidad, si no tiene el notifier, fractura normalmente
-                FracturedObjects fallback = other.GetComponent<FracturedObjects>();
-                if (fallback != null)
-                {
-                    fallback.Explode();
-                }
-            }
+            other.GetComponent<FracturedObjects>().Explode();
         }
     }
 
