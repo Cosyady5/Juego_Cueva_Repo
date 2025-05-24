@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Juego_Cueva_Root/Scenes/PlayScene.unity
     guid: 900650c543b25b74bb60a59af3ad411d
+  - enabled: 1
+    path: Assets/Juego_Cueva_Root/Scenes/WinSCene.unity
+    guid: 4cacabd885332d84cb9fad50c3d998b7
   m_configObjects: {}
