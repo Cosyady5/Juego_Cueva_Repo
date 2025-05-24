@@ -15,6 +15,8 @@ public class PiranhasJump : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
 
+    public GameObject splashVFX;
+
     private void Start()
     {
         startPos = transform.position;
@@ -24,8 +26,13 @@ public class PiranhasJump : MonoBehaviour
 
     private void StartJump()
     {
+        if (splashVFX != null)
+        {
+            splashVFX.SetActive(true);
+        }
         StartCoroutine(ParabolicJump());
     }
+
 
     private IEnumerator ParabolicJump()
     {
