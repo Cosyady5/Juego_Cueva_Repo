@@ -112,6 +112,10 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
             attackCollider.enabled = false;
         }
+        if (other.CompareTag("Destructible"))
+        {
+            other.GetComponent<FracturedObjects>().Explode();
+        }
     }
 
     public void SetHasWeapon(bool value)
