@@ -6,6 +6,7 @@ public class FracturedObjects : MonoBehaviour
 {
     public GameObject original;
     public GameObject fractured;
+    public Collider triggeractual;
     //public GameObject vfx;
     public float explosionMinForce = 5;
     public float explosionMaxForce = 100;
@@ -16,10 +17,9 @@ public class FracturedObjects : MonoBehaviour
 
     public void Explode()
     {
-        Collider trigger = GetComponent<Collider>();
-        if (trigger != null)
+        if (triggeractual != null)
         {
-            trigger.enabled = false;
+            triggeractual.enabled = false;
         }
         if (original != null)
         {

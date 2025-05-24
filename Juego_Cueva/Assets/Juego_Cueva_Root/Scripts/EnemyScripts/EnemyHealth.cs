@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int currentHealth;
     private Animator anim;
     private bool isDead = false;
-
+    private EnemySpawner spawner;
 
     [Header("Feedback Configuration")]
     public SkinnedMeshRenderer skinnedMesh;
@@ -45,17 +45,18 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    IEnumerator Die()
+    public IEnumerator Die()
     {
         isDead = true;
         anim.SetTrigger("Death");
         // Espera hasta que termine la animación de muerte
         yield return new WaitForSecondsRealtime(2f);
 
+        spawner?.NotifyEnemyDied(gameObject);
         Destroy(gameObject);
     }
 
-    IEnumerator DissolveCo()
+    public IEnumerator DissolveCo()
     {
         float counter = 0;
         while (skinnedMaterials[0].GetFloat("_DissolveAmount") < 1)
@@ -80,5 +81,13 @@ public class EnemyHealth : MonoBehaviour
         {
             mat.SetColor("_BaseColor", Color.white);
         }
+    }
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+    public void SetSpawner(EnemySpawner s)
+    {
+        spawner = s;
     }
 }
