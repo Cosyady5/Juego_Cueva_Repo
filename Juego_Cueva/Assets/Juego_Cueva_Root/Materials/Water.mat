@@ -38,8 +38,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.5
-    - _Density: 59.49
+    - _Alpha: 0.3
+    - _Density: 118.3
     - _Power: 5
     - _QueueControl: 0
     - _QueueOffset: 0

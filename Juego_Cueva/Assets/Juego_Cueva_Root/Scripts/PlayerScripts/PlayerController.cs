@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     [Header("State Bools")]
     [SerializeField] bool isAttacking; //Verdadero cuando ESTAMOS DISPARANDO
     [SerializeField] bool canAttack; //Verdadero cuando PODEMOS DISPARAR
-    //[SerializeField] bool weaponOn = false;
+    public bool isDead = false;
+
 
     [Header("Jumping Stats")]
     public float jumpForce;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        if (isDead) return;
         Vector3 currentVelocity = playerRb.velocity; 
         Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y);
         Vector3 camForward = cameraFollowTransform.forward;
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
+        if (isDead) return;
         canAttack = false;
         anim.SetTrigger("isAttacking");
         Invoke(nameof(ResetAttack), shootingCooldown);
@@ -133,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        if (isDead) return;
         if (jumpCount < maxJumps)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

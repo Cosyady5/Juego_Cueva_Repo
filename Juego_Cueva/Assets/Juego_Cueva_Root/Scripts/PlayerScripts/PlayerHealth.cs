@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
@@ -14,17 +15,18 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Respawn Configuration")]
     [SerializeField] Vector3 respawnPoint;
-    [SerializeField] List<GameObject> checkPoints;
+
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
         uiManager.UpdateHearts(currentHealth);
+        respawnPoint = transform.position;
     }
     private void Update()
     {
-        if (transform.position.y <= -10) Respawn();
+        if (transform.position.y <= -4) Respawn();
     }
 
 
@@ -41,6 +43,9 @@ public class PlayerHealth : MonoBehaviour
     }
     IEnumerator Die()
     {
+        GetComponent<PlayerController>().isDead = true;
+
+
         isDead = true;
         anim.SetTrigger("Death");
         yield return new WaitForSecondsRealtime(2f);
@@ -49,7 +54,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Respawn()
     {
+        GetComponent<PlayerController>().isDead = false;
         transform.position = respawnPoint;
+
+
         currentHealth = maxHealth;
         isDead = false;
         anim.Play("Player_Idle");
