@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!attackCollider.enabled) return;
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && other.CompareTag("SpawnedEnemy"))
         {
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
             attackCollider.enabled = false;

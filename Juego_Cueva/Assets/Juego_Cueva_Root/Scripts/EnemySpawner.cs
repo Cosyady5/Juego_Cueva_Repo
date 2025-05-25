@@ -69,12 +69,11 @@ public class EnemySpawner : MonoBehaviour
         // Matar a todos los enemigos ya generados
         foreach (var enemy in spawnedEnemies)
         {
-            if (enemy != null)
+            if (enemy != null && enemy.CompareTag("SpawnedEnemy"))
             {
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
                 if (enemyHealth != null)
                 {
-                    // Solo iniciar la muerte si no está ya muriendo
                     if (!enemyHealth.GetIsDead())
                     {
                         StartCoroutine(enemyHealth.Die());
