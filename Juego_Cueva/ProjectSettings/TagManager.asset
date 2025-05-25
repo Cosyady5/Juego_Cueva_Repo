@@ -9,6 +9,8 @@ TagManager:
   - Checkpoint
   - Destructible
   - Crystal
+  - CheckPoint
+  - SpawnedEnemy
   layers:
   - Default
   - TransparentFX
