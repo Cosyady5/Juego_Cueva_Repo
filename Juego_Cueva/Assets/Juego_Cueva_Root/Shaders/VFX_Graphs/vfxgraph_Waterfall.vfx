@@ -1019,7 +1019,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.31940069794654848,"g":0.90172278881073,"b":1.2311444282531739,"a":1.0}'
+      m_SerializableObject: '{"r":0.3721526563167572,"g":0.24400576949119569,"b":0.44699999690055849,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: _BaseColor
@@ -2230,7 +2230,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.2594339847564697,"g":0.7324264645576477,"b":1.0,"a":1.0}'
+      m_SerializableObject: '{"r":0.19811320304870606,"g":0.15606087446212769,"b":0.5249999761581421,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: _BaseColor
@@ -2838,7 +2838,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.626
+      m_SerializableObject: 0.672
     m_Space: 2147483647
   m_Property:
     name: _Clip
@@ -4065,7 +4065,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.2594339847564697,"g":0.7324264645576477,"b":1.0,"a":1.0}'
+      m_SerializableObject: '{"r":0.19063721597194673,"g":0.20086169242858888,"b":0.3396226167678833,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: _BaseColor
@@ -7078,7 +7078,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.2594339847564697,"g":0.7324264645576477,"b":1.0,"a":1.0}'
+      m_SerializableObject: '{"r":0.14587846398353578,"g":0.08410466462373734,"b":0.28301888704299929,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: _BaseColor
@@ -8578,7 +8578,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.2594339847564697,"g":0.7324264645576477,"b":1.0,"a":1.0}'
+      m_SerializableObject: '{"r":0.20754718780517579,"g":0.1439124345779419,"b":0.5320000052452087,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: _BaseColor
@@ -9186,7 +9186,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.816
+      m_SerializableObject: 0.785
     m_Space: 2147483647
   m_Property:
     name: _Clip

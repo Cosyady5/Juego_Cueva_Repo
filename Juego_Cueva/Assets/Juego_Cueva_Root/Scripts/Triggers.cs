@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Triggers : MonoBehaviour
 {
-    public Collider triggerToWatch;       // El trigger que vamos a observar
-    public Collider triggerToEnable;      // El trigger que queremos activar después
-    private bool previousState = true;    // Guardamos el estado anterior
-    private bool hasSwitched = false;     // Para que no se repita el proceso
+    public Collider triggerToWatch;      
+    public Collider triggerToEnable;      
+    private bool previousState = true;   
+    private bool hasSwitched = false;     
 
     void Start()
     {
