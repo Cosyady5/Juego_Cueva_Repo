@@ -19,7 +19,7 @@ public class SceneChanger : MonoBehaviour
 
     [SerializeField] private string Escena;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

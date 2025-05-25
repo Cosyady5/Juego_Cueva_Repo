@@ -66,6 +66,7 @@ public class EnemySpawner : MonoBehaviour
     {
         canSpawn = false;
 
+        spawnedEnemies.RemoveAll(e => e == null);
         // Matar a todos los enemigos ya generados
         foreach (var enemy in spawnedEnemies)
         {
@@ -81,17 +82,17 @@ public class EnemySpawner : MonoBehaviour
                     }
                 }
             }
-            triggerZone.enabled = false;
         }
+        if (triggerZone != null)
+            triggerZone.enabled = false;
 
         spawnedEnemies.Clear();
 
         if (hasboss)
         {
-            boss.SetActive(true);
-            hpBoss.SetActive(true);
+            if (boss != null) boss.SetActive(true);
+            if (hpBoss != null) hpBoss.SetActive(true);
         }
-
     }
     public void NotifyEnemyDied(GameObject enemy)
     {

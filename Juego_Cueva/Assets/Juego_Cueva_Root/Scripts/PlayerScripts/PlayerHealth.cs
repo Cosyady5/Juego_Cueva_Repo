@@ -54,9 +54,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Respawn()
     {
-        GetComponent<PlayerController>().isDead = false;
+        
         transform.position = respawnPoint;
-
+        GetComponent<PlayerController>().isDead = false;
 
         currentHealth = maxHealth;
         isDead = false;

@@ -47,7 +47,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.6985059, g: 1.2474561, b: 3.4598894, a: 1}
     - _BottomColor: {r: 36.533424, g: 5.5953717, b: 89.05966, a: 1}
-    - _TopColor: {r: 1.2744805, g: 0.009561613, b: 1.6892427, a: 1}
+    - _TopColor: {r: 1.1302235, g: 0.008479345, b: 1.4980392, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1892003472262522054
 MonoBehaviour:

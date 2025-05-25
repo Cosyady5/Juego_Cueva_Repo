@@ -6476,9 +6476,9 @@ MonoBehaviour:
   walkPointSet: 0
   timeBetweenAttacks: 2
   enemyCollider: {fileID: 884128961447984724}
-  enemyDamage: 0
-  patrolSpeed: 2
-  chaseSpeed: 5
+  enemyDamage: 3
+  patrolSpeed: 3
+  chaseSpeed: 6
   sightRange: 22
   attackRange: 1.5
   targetInSightRange: 0
@@ -6544,9 +6544,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 1
-  m_Acceleration: 2
+  m_Acceleration: 4
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 270
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

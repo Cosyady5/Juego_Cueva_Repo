@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement & Look Stats")]
     [SerializeField] private float rotationSpeed = 4f;
     public float speed;
-    public float maxForce = 1; //Límite de aceleración máxima
+    public float maxForce = 1; //L?mite de aceleraci?n m?xima
     private Transform cameraFollowTransform;
 
     [Header("Interactable Stats")]
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isAttacking; //Verdadero cuando ESTAMOS DISPARANDO
     [SerializeField] bool canAttack; //Verdadero cuando PODEMOS DISPARAR
     public bool isDead = false;
-
+    
 
     [Header("Jumping Stats")]
     public float jumpForce;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleAnimations();
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius, groundLayer);
-        if (isGrounded && jumpCount > 0) jumpCount = 0; 
+        if (isGrounded && jumpCount > 0) jumpCount = 0;
         if (canAttack && isAttacking) Attack();
     }
     private void FixedUpdate()
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         if (isDead) return;
-        Vector3 currentVelocity = playerRb.velocity; 
+        Vector3 currentVelocity = playerRb.velocity;
         Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y);
         Vector3 camForward = cameraFollowTransform.forward;
         Vector3 camRight = cameraFollowTransform.right;
@@ -79,12 +79,12 @@ public class PlayerController : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
-        // Movimiento relativo a la cámara
+        // Movimiento relativo a la c?mara
         Vector3 targetVelocity = (camForward * inputDir.z + camRight * inputDir.x) * speed;
 
         //Calcular las fuerzas que afectan al movimiento
         Vector3 velocityChange = (targetVelocity - currentVelocity);
-        velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z); //Hace que la aceleración no afecte en vertical
+        velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z); //Hace que la aceleraci?n no afecte en vertical
         Vector3.ClampMagnitude(velocityChange, maxForce);
 
         //Aplicamos el movimiento
