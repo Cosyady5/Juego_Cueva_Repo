@@ -31,13 +31,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] int maxJumps = 1;
     int jumpCount;
+    float timeAir;
+    bool firstjump = false;
 
     //Referencias privadas (GetComponent)
     private Rigidbody playerRb;
     private Animator anim;
     //Referencias privadas del input
     Vector2 moveInput;
-    Vector2 lookInput;
+    //Vector2 lookInput;
+    private AudioSource stepSound;
 
     private void Awake()
     {
@@ -46,20 +49,43 @@ public class PlayerController : MonoBehaviour
         groundCheck = GameObject.Find("GroundCheck");
         cameraFollowTransform = Camera.main.transform;
         canAttack = false;
+        stepSound = GetComponent<AudioSource>();
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         attackCollider.enabled = false;
+
     }
 
     void Update()
     {
         HandleAnimations();
+        HandleFootsteps();
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius, groundLayer);
         if (isGrounded && jumpCount > 0) jumpCount = 0;
+        /*if (isGrounded && jumpCount > 0)
+        {
+            timeAir = 0f;
+            jumpCount = 0;
+        }
+        else timeAir += Time.deltaTime;*/
         if (canAttack && isAttacking) Attack();
+    }
+
+    void HandleFootsteps()
+    {
+        bool isMoving = moveInput.magnitude > 0.1f && isGrounded && !isDead;
+
+        if (isMoving && !stepSound.isPlaying)
+        {
+            stepSound.Play();
+        }
+        else if (!isMoving && stepSound.isPlaying)
+        {
+            stepSound.Stop();
+        }
     }
     private void FixedUpdate()
     {
@@ -73,7 +99,7 @@ public class PlayerController : MonoBehaviour
         Vector3 inputDir = new Vector3(moveInput.x, 0, moveInput.y);
         Vector3 camForward = cameraFollowTransform.forward;
         Vector3 camRight = cameraFollowTransform.right;
-
+        
         camForward.y = 0;
         camRight.y = 0;
         camForward.Normalize();
@@ -101,6 +127,8 @@ public class PlayerController : MonoBehaviour
     void Attack()
     {
         if (isDead) return;
+
+        AudioManager.Instance.PlaySFX(7);
         canAttack = false;
         anim.SetTrigger("isAttacking");
         Invoke(nameof(ResetAttack), shootingCooldown);
@@ -139,9 +167,26 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         if (jumpCount < maxJumps)
         {
+            AudioManager.Instance.PlaySFX(6);
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
         }
+
+        /*if ((isGrounded || timeAir < 0.25f) && jumpCount == 0)
+        {
+            AudioManager.Instance.PlaySFX(6);
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount = 1;
+        }
+        else
+        {
+            if (jumpCount == 1)
+            {
+                AudioManager.Instance.PlaySFX(6);
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                jumpCount = 2;
+            }
+        }*/
     }
 
     void HandleAnimations()
@@ -172,10 +217,10 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
-    public void OnLook(InputAction.CallbackContext context)
+    /*public void OnLook(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();
-    }
+    }*/
 
     public void OnJump(InputAction.CallbackContext context)
     {

@@ -68,11 +68,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8066948354931992886, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -7906224672407743093, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: -7760259268475175191, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7664052944232634055, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -6973004819645719414, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -83,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: -6813523803881254931, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -6722098636298447971, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -93,16 +113,61 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: -5994867864298176131, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5504040584282316239, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5408845446769049900, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4820301835717145469, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4204310311032992596, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -2410022317750159120, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: -1497314762113876025, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1447477599994743516, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -1376558897498326399, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: -811063019224904633, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -633644035693135019, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -327008015367131048, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -123,6 +188,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: door_fractures
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268030086690835801, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2394120982646390526, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -133,11 +208,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: 3129341110449650789, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3671284174588261037, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: 3914781566267586020, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4058103751358802835, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -148,11 +233,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: 5884829428722627522, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6314046295882885173, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6790312447438267726, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a41505590d0d9554c85a7dbb23ab37fd, type: 2}
+    - target: {fileID: 6958660815288666090, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8775024908810542465, guid: 3357c1f6d3872ae4ab74399cb7d931c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -361,7 +461,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -416,7 +516,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -471,7 +571,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -526,7 +626,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -581,7 +681,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -636,7 +736,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -691,7 +791,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -746,7 +846,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -801,7 +901,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -856,7 +956,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -911,7 +1011,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -966,7 +1066,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1021,7 +1121,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1076,7 +1176,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1131,7 +1231,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1186,7 +1286,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1241,7 +1341,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1296,7 +1396,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1351,7 +1451,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

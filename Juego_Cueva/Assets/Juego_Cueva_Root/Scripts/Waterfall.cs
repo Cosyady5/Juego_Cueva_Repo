@@ -8,15 +8,17 @@ public class Waterfall : MonoBehaviour
 
     public static int points;
     public int winPoints;
-  
 
-    // Update is called once per frame
+    private void Start()
+    {
+        points = 0;
+    }
     void Update()
     {
 
         if (points >= winPoints)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

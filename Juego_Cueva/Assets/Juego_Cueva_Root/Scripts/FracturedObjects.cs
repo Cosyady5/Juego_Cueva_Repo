@@ -16,6 +16,13 @@ public class FracturedObjects : MonoBehaviour
     private GameObject fractObj;
     public Collider nextTrigger;
     public float delayToActivateNext = 1f;
+
+    private AudioSource fracturedSound;
+
+    private void Start()
+    {
+        fracturedSound = GetComponent<AudioSource>();
+    }
     public void Explode()
     {
         if (triggeractual != null)
@@ -27,6 +34,7 @@ public class FracturedObjects : MonoBehaviour
             original.SetActive(false);
             if (fractured != null)
             {
+                fracturedSound.Play();
                 //fractObj = Instantiate(fractured) as GameObject;
                 fractObj = Instantiate(fractured, original.transform.position, original.transform.rotation);
                 foreach (Transform t in fractObj.transform)

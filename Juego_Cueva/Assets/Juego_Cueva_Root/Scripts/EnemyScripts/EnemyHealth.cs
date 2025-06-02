@@ -40,7 +40,6 @@ public class EnemyHealth : MonoBehaviour
             currentHealth = 0;
             StartCoroutine(Die());
             healthBar.gameObject.SetActive(false);
-            deathEffect.SetActive(true);
             if (skinnedMaterials.Length > 0) StartCoroutine(DissolveCo());
         }
     }
@@ -58,6 +57,7 @@ public class EnemyHealth : MonoBehaviour
 
     public IEnumerator DissolveCo()
     {
+        deathEffect.SetActive(true);
         float counter = 0;
         while (skinnedMaterials[0].GetFloat("_DissolveAmount") < 1)
         {

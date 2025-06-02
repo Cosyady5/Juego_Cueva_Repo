@@ -19,7 +19,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] sfxLibrary;
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(this.gameObject);
     }
 

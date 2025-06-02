@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseGame : MonoBehaviour
 {
@@ -10,9 +11,10 @@ public class PauseGame : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        HideCursor();
     }
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -26,7 +28,7 @@ public class PauseGame : MonoBehaviour
                 ResumeGame();
             }
         }
-    }
+    }*/
 
     public void ToggleCursor()
     {
@@ -53,5 +55,17 @@ public class PauseGame : MonoBehaviour
         GameManager.Instance.currentGameState = GameManager.GameStatus.gamePaused;
         Time.timeScale = 0f;
         menuPause.SetActive(true);
+    }
+    public void OnPause()
+    {
+        ToggleCursor();
+        if (GameManager.Instance.currentGameState == GameManager.GameStatus.gameRunning)
+        {
+            PauseMenu();
+        }
+        else if (GameManager.Instance.currentGameState == GameManager.GameStatus.gamePaused)
+        {
+            ResumeGame();
+        }
     }
 }

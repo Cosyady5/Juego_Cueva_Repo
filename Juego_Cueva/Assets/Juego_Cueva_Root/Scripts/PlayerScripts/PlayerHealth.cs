@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.position.y <= -4) Respawn();
+        if (transform.position.y <= -10) Respawn();
     }
 
 
@@ -44,23 +44,40 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator Die()
     {
         GetComponent<PlayerController>().isDead = true;
-
-
         isDead = true;
         anim.SetTrigger("Death");
+
+        // Disable physics temporarily
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+
         yield return new WaitForSecondsRealtime(2f);
+
         Respawn();
+
+        // Re-enable physics
     }
 
     void Respawn()
     {
-        
-        transform.position = respawnPoint;
-        GetComponent<PlayerController>().isDead = false;
+        //Vector3 preTeleportPos = transform.position;
+        //GetComponent<PlayerController>().enabled = false;
 
+        transform.position = respawnPoint;
+        transform.rotation = Quaternion.identity;
+
+        Physics.SyncTransforms();
+
+        // Reset states
+        GetComponent<PlayerController>().isDead = false;
         currentHealth = maxHealth;
         isDead = false;
-        anim.Play("Player_Idle");
+
+        anim.Play("Player_Idle", 0, 0);
+
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
         uiManager.UpdateHearts(currentHealth);
     }
 
@@ -73,6 +90,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (other.CompareTag("Checkpoint"))
         {
+            AudioManager.Instance.PlaySFX(4);
             respawnPoint = transform.position;
             Destroy(other.gameObject);
         }
