@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isGrounded;
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] int maxJumps = 1;
+    //[SerializeField] int maxJumps = 1;
     int jumpCount;
     float timeAir;
-    bool firstjump = false;
+    //bool firstjump = false;
 
     //Referencias privadas (GetComponent)
     private Rigidbody playerRb;
@@ -64,13 +64,13 @@ public class PlayerController : MonoBehaviour
         HandleAnimations();
         HandleFootsteps();
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius, groundLayer);
-        if (isGrounded && jumpCount > 0) jumpCount = 0;
-        /*if (isGrounded && jumpCount > 0)
+        //if (isGrounded && jumpCount > 0) jumpCount = 0;
+        if (isGrounded)
         {
             timeAir = 0f;
             jumpCount = 0;
         }
-        else timeAir += Time.deltaTime;*/
+        else timeAir += Time.deltaTime;
         if (canAttack && isAttacking) Attack();
     }
 
@@ -147,10 +147,6 @@ public class PlayerController : MonoBehaviour
         {
             other.GetComponent<FracturedObjects>().Explode();
         }
-        if (other.CompareTag("Crystal"))
-        {
-            other.GetComponent<FracturedObjects>().Explode();
-        }
     }
 
     public void SetHasWeapon(bool value)
@@ -165,7 +161,24 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         if (isDead) return;
-        if (jumpCount < maxJumps)
+
+        if (timeAir > 0.2f && jumpCount == 0)
+        {
+            AudioManager.Instance.PlaySFX(6);
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount = 1;
+        }
+        else
+        {
+            if (jumpCount == 0)
+            {
+                AudioManager.Instance.PlaySFX(6);
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+        }
+
+
+        /*if (jumpCount < maxJumps)
         {
             AudioManager.Instance.PlaySFX(6);
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
